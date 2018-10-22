@@ -11,36 +11,26 @@ public class Rubrica {
 	public static int numEl() {
 		return rubrica.size();
 	}
-	public static int aggiungi(String string) {
-		if(rubrica.size() < Rubrica.MAX_DIM ) {
-			rubrica.add(string);
-			return 1;
-		}
-		else {
+
+	public static int aggiungiFinale(String string) {
+		if(rubrica.size() >= MAX_DIM) {
 			return -1;
 		}
-	}
-	public static boolean trovato(String string) {
-		for(int i=0;i<rubrica.size();i++) {
-			if(rubrica.get(i).equals(string) == true) {
-				return true;
-			}
-		}
-		return false;
-	}
-	
-	public static int aggiungiFinale(String string) {
-		if(rubrica.size() < Rubrica.MAX_DIM && Rubrica.trovato(string) == false) {
-			rubrica.add(string);
-			return 1;
-		}
-		else if(rubrica.size() < Rubrica.MAX_DIM && Rubrica.trovato(string) == true) {
+		if(rubrica.contains(string)) {
 			return 0;
 		}
-		else {
-			assert(rubrica.size() == Rubrica.MAX_DIM);
-			return -1;
+		rubrica.add(string);
+		return 1;
+	}
+	// Da rifare
+	public static int search(String string) {
+		for(int i=0;i<rubrica.size();i=i+1)
+		{
+			if(string.equals(rubrica.get(i))) {
+				return i;
+			}
 		}
+		return -1;
 	}
 	
 }
