@@ -8,33 +8,38 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class TestRubricaStatica {
+	public Rubrica container = new Rubrica();
 
 	@Before
 	public void creazione() {
 //		System.out.println("BEFORE");
-		Rubrica.crea();
+		assertEquals(5,container.MAX_DIM);
+		int num  = container.getNum();
+		assertEquals("Rubrica" + --num, container.nome);
 	}
-
+/*
 	@After
 	public void resetRubrica() {
 //		System.out.println("AFTER");
+		
 	}
-
+*/
 	@Test
 	public void testCreazione() {
 //		System.out.println("CREAZIONE");
-		assertTrue(Rubrica.numEl() == 0);
+		assertTrue(container.numEl() == 0);
 	}
 
 	@Test
 	public void testAggiungi() {
 //		System.out.println("AGGIUNGI");
-		assertEquals(1, Rubrica.aggiungi("Giovanni=123456"));
-		assertEquals(1, Rubrica.numEl());
-		assertEquals(1, Rubrica.aggiungi("Mattia = 345216789"));
-		assertEquals(2, Rubrica.numEl());
+		assertEquals(1, container.aggiungi("Giovanni=123456"));
+		assertEquals(1, container.numEl());
+		assertEquals(1, container.aggiungi("Mattia = 345216789"));
+		assertEquals(2, container.numEl());
+		// Fare da qui il metodo aggiungi
 	}
-
+/*
 	@Test
 	public void testAggiuntaMassima() {
 //		System.out.println("AGGIUNTA_MASSIMA");
@@ -149,4 +154,5 @@ public class TestRubricaStatica {
 		Rubrica.aggiungi("Giorgio=7689453201");
 		Rubrica.aggiungi("Giovanni=0123456784");
 	}
+	*/
 }
