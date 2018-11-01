@@ -25,12 +25,43 @@ public class Rubrica {
 	}
 
 	public int numEl() {
-		return 0;
+		return rubrica.size();
 	}
 
-	public Object aggiungi(String string) {
-		// TODO Auto-generated method stub
-		return null;
+	public int aggiungi(String string) {
+		if(rubrica.size() >= MAX_DIM) return -1;
+		if(rubrica.contains(string)) return 0;
+		rubrica.add(string);
+		return 1;
+	}
+
+	public ArrayList<String> cerca(String string) {
+		ArrayList<String> sottoRubrica = new ArrayList<String>();
+		if(rubrica.size()==0) return sottoRubrica;
+		for(int i=0;i<rubrica.size();i++) {
+			if(rubrica.get(i).startsWith(string)) sottoRubrica.add(rubrica.get(i));
+		}
+		return sottoRubrica;
+	}
+
+	public boolean elimina(String string) {
+		boolean cond = false;
+		if(rubrica.size()==0) return cond;
+		int i=0;
+		while(i<rubrica.size()) {
+			if(rubrica.get(i).startsWith(string)) {
+				rubrica.remove(i);
+				cond = true;
+			}
+			else i++;
+		}
+		return cond;
+	}
+
+	public boolean stampa() {
+		if(rubrica.size()==0) return false;
+		System.out.println(rubrica.toString());
+		return true;
 	}
 	
 }
