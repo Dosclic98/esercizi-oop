@@ -23,14 +23,12 @@ public class Rubrica {
 		return 1;
 	}
 	// Da rifare
-	public static int search(String string) {
-		for(int i=0;i<rubrica.size();i=i+1)
-		{
-			if(string.equals(rubrica.get(i))) {
-				return i;
-			}
+	public static ArrayList<String> cerca(String string) {
+		ArrayList<String> sottoRubrica = new ArrayList<String>();
+		for(int i=0;i<rubrica.size();i++) {
+			if(rubrica.get(i).startsWith(string)) sottoRubrica.add(rubrica.get(i));
 		}
-		return -1;
+		return sottoRubrica;
 	}
 	
 }

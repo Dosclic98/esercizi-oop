@@ -42,39 +42,29 @@ public class TestRubrica {
 	}
 	
 	@Test
-	public void testSearchVoid() {
-		assertEquals(-1,Rubrica.search("Giovanni=1233456"));
-		assertTrue(0 == Rubrica.numEl());
+	public void cercaRubricaVuota() {
+		assertEquals(0, Rubrica.cerca("Sat").size());
+		assertEquals(0, Rubrica.numEl()); // Non ci sono stringhe
 	}
 	@Test
 	public void testSearchFirts() {
 		assertEquals(1,Rubrica.aggiungiFinale("Giovanni=1233456"));
-		assertEquals(0,Rubrica.search("Giovanni=1233456"));
-		assertTrue(1 == Rubrica.numEl());
+		assertEquals(1,Rubrica.aggiungiFinale("Maria=654321"));
+		assertEquals(1,Rubrica.aggiungiFinale("Paolo=1233456"));
+		assertEquals(1,Rubrica.cerca("Giov").size());
 	}
 	@Test
 	public void testSearchHalf() {
 		assertEquals(1,Rubrica.aggiungiFinale("Giovanni=1233456"));
-		assertEquals(1,Rubrica.aggiungiFinale("Maria=1233456"));
-		assertEquals(1,Rubrica.aggiungiFinale("Luigi=1233456"));
-		assertEquals(1,Rubrica.search("Maria=1233456"));
-		assertTrue(3 == Rubrica.numEl());
+		assertEquals(1,Rubrica.aggiungiFinale("Maria=654321"));
+		assertEquals(1,Rubrica.aggiungiFinale("Giulia=1233456"));
+		assertEquals(1,Rubrica.cerca("Mar").size());
 	}
 	@Test
 	public void testSearchLast() {
 		assertEquals(1,Rubrica.aggiungiFinale("Giovanni=1233456"));
-		assertEquals(1,Rubrica.aggiungiFinale("Luigi=1233456"));
-		assertEquals(1,Rubrica.aggiungiFinale("Maria=1233456"));
-		assertEquals(2,Rubrica.search("Maria=1233456"));
-		assertTrue(3 == Rubrica.numEl());
+		assertEquals(1,Rubrica.aggiungiFinale("Maria=654321"));
+		assertEquals(1,Rubrica.aggiungiFinale("Paolo=987654321"));
+		assertEquals(1,Rubrica.cerca("Pao").size());
 	}
-	@Test
-	public void testSearchFull() {
-		assertEquals(1,Rubrica.aggiungiFinale("Giovanni=1233456"));
-		assertEquals(1,Rubrica.aggiungiFinale("Luigi=1233456"));
-		assertEquals(1,Rubrica.aggiungiFinale("Maria=1233456"));
-		assertEquals(-1,Rubrica.search("Luca=1233456"));
-		assertTrue(3 == Rubrica.numEl());
-	}
-	
 }
