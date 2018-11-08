@@ -127,13 +127,20 @@ public class TestRubrica {
 	}
 	@Test
 	public void testStampaVuota() {
-		assertFalse(container.stampa());
+		assertEquals("[]",container.toString());
 	}
+	@Test
+	public void testStampa3Elem() {
+		container.aggiungi("Mario=1234598765");
+		container.aggiungi("Luca=1638598765");
+		container.aggiungi("Enrico=1638598765");
+		assertEquals("[Mario=1234598765, Luca=1638598765, Enrico=1638598765]",container.toString());
+	}	
 	@Test
 	public void testStampaPiena() {
 		addElementiRubrica();
-		assertTrue(container.stampa());
-	}	
+		assertEquals("[Giovanni=0123456789, Enzo=4593782610, Paola=0123456789, Sara=0354768912, Giorgio=7689453201]",container.toString());
+	}
 	private void addElementiRubrica() {
 		container.aggiungi("Giovanni=0123456789");
 		container.aggiungi("Enzo=4593782610");

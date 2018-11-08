@@ -37,7 +37,6 @@ public class Rubrica {
 
 	public ArrayList<String> cerca(String string) {
 		ArrayList<String> sottoRubrica = new ArrayList<String>();
-		if(rubrica.size()==0) return sottoRubrica;
 		for(int i=0;i<rubrica.size();i++) {
 			if(rubrica.get(i).startsWith(string)) sottoRubrica.add(rubrica.get(i));
 		}
@@ -46,7 +45,6 @@ public class Rubrica {
 
 	public boolean elimina(String string) {
 		boolean cond = false;
-		if(rubrica.size()==0) return cond;
 		int i=0;
 		while(i<rubrica.size()) {
 			if(rubrica.get(i).startsWith(string)) {
@@ -58,10 +56,8 @@ public class Rubrica {
 		return cond;
 	}
 
-	public boolean stampa() {
-		if(rubrica.size()==0) return false;
-		System.out.println(rubrica.toString());
-		return true;
+	public String toString() {
+		return rubrica.toString();
 	}
 	
 }
