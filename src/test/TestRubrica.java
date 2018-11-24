@@ -2,69 +2,83 @@ package test;
 
 import static org.junit.Assert.*;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
+import rubrica.Contatto;
 import rubrica.Rubrica;
 
 public class TestRubrica {
-
+	Rubrica rubrica1;
+	Rubrica rubrica2;
+	
 	@Before
 	public void testCreazione() {
-		Rubrica.crea();
-		assertTrue(Rubrica.numEl()==0);
+		rubrica1 = new Rubrica("Impiegati",3);
+		rubrica2 = new Rubrica("Direttori",3);
+		assertTrue(rubrica1.numEl()==0);
+		assertTrue(rubrica2.numEl()==0);
 	}
 	
 	@Test
-	public void testAggiungi() {
-		assertEquals(1, Rubrica.aggiungiFinale("Giovanni=1233456")); // oppure
-		// assertTrue(Rubrica.aggiungi("Giovanni=1233456")==1);
-		assertEquals(1, Rubrica.numEl()); // oppure
-		// assertTrue(Rubrica.numEl()==1);
+	public void aggiunta() {
+		assertEquals(1,rubrica1.aggiungi("Mario","MarioRossi@gmail.com","123456,654321,567890"));
+		assertEquals(1,rubrica2.aggiungi("Mario","MarioRossi@gmail.com","123456,654321,567890"));
+		
+		assertEquals(1,rubrica1.aggiungi("Luca","LucaBianchi@gmail.com","123456,654321,567890"));
+		assertEquals(0,rubrica1.aggiungi("Luca","LucaBianchi@gmail.com","123456,654321,567890"));
+		assertEquals(1,rubrica1.aggiungi("Paolo","PaoloSoave@gmail.com","123456,654321,567890"));
+		assertEquals(-1,rubrica1.aggiungi("Marco","MarcoMaliani@gmail.com","123456,654321,567890"));
+	}
+
+	@Test
+	public void aggiuntaRif() {
+		Contatto n1 = new Contatto("Mario","MarioRossi@gmail.com","123456,654321,567890");
+		assertEquals(1,rubrica1.aggiungi(n1));
+		assertEquals(1,rubrica2.aggiungi(n1));
+		assertTrue(rubrica1.toString().equals("[Mario,MarioRossi@gmail.com,[123456, 654321, 567890]]"));
+		assertTrue(rubrica1.toString().equals("[Mario,MarioRossi@gmail.com,[123456, 654321, 567890]]"));
+		// Modifico il contatto e verifico che sia cambiato in entrambe le rubriche
+		n1.setEmail("Mario86@gmail.com");
+		n1.inserisciNumTel("348291");
+		assertTrue(rubrica1.toString().equals("[Mario,Mario86@gmail.com,[123456, 654321, 567890, 348291]]"));
+		assertTrue(rubrica1.toString().equals("[Mario,Mario86@gmail.com,[123456, 654321, 567890, 348291]]"));
+
 	}
 	
 	@Test
-	public void testAggiungiContr() {
-		// Aggiungo MAX_DIM + 1 elementi e verifico che alla fine sia ritornato -1
-		// e che ci siano solo MAX_DIM elementi
-		assertEquals(1,Rubrica.aggiungiFinale("Giovanni=1233456"));
-		assertEquals(1,Rubrica.aggiungiFinale("Mario=1233456"));
-		assertEquals(1,Rubrica.aggiungiFinale("Enzo=1233456"));
-		assertEquals(-1,Rubrica.aggiungiFinale("Paolo=1233456"));
-		assertEquals(Rubrica.MAX_DIM, Rubrica.numEl());
+	public void cercaNome() {
+		assertEquals(1,rubrica1.aggiungi("Mario","MarioRossi@gmail.com","123456,654321,567890"));
+		assertEquals(1,rubrica1.cercaPerNome("Mar").size());
+		assertEquals(0,rubrica1.cercaPerNome("Luc").size());
+	}
+
+	@Test
+	public void cercaEmail() {
+		assertEquals(1,rubrica1.aggiungi("Mario","MarioRossi@gmail.com","123456,654321,567890"));
+		assertEquals(1,rubrica1.cercaPerEmail("Mar").size());
+		assertEquals(0,rubrica1.cercaPerEmail("Luc").size());		
+	}
+
+	@Test
+	public void elmininaNome() {
+		assertEquals(1,rubrica1.aggiungi("Mario","MarioRossi@gmail.com","123456,654321,567890"));
+		assertTrue(rubrica1.eliminaPerNome("Mar"));
+		assertEquals(0,rubrica1.numEl());
+	}
+
+	@Test
+	public void eliminaEmail() {
+		assertEquals(1,rubrica1.aggiungi("Luca","MarioRossi@gmail.com","123456,654321,567890"));
+		assertTrue(rubrica1.eliminaPerEmail("Mar"));
+		assertEquals(0,rubrica1.numEl());		
 	}
 	
-	@Test
-	public void testAggiungiRet() {
-		assertEquals(1,Rubrica.aggiungiFinale("Giovanni=1233456"));
-		assertEquals(1,Rubrica.aggiungiFinale("Maria=654321"));
-		assertEquals(0,Rubrica.aggiungiFinale("Giovanni=1233456"));
-		assertEquals(2,Rubrica.numEl());
+	@After
+	public void reset() {
+		rubrica1 = null;
+		rubrica2 = null;
 	}
-	
-	@Test
-	public void cercaRubricaVuota() {
-		assertEquals(0, Rubrica.cerca("Sat").size());
-		assertEquals(0, Rubrica.numEl()); // Non ci sono stringhe
-	}
-	@Test
-	public void testSearchFirts() {
-		assertEquals(1,Rubrica.aggiungiFinale("Giovanni=1233456"));
-		assertEquals(1,Rubrica.aggiungiFinale("Maria=654321"));
-		assertEquals(1,Rubrica.aggiungiFinale("Paolo=1233456"));
-		assertEquals(1,Rubrica.cerca("Giov").size());
-	}
-	@Test
-	public void testSearchHalf() {
-		assertEquals(1,Rubrica.aggiungiFinale("Giovanni=1233456"));
-		assertEquals(1,Rubrica.aggiungiFinale("Maria=654321"));
-		assertEquals(1,Rubrica.aggiungiFinale("Giulia=1233456"));
-		assertEquals(1,Rubrica.cerca("Mar").size());
-	}
-	@Test
-	public void testSearchLast() {
-		assertEquals(1,Rubrica.aggiungiFinale("Giovanni=1233456"));
-		assertEquals(1,Rubrica.aggiungiFinale("Maria=654321"));
-		assertEquals(1,Rubrica.aggiungiFinale("Paolo=987654321"));
-		assertEquals(1,Rubrica.cerca("Pao").size());
-	}
+
 }

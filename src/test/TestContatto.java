@@ -31,7 +31,7 @@ public class TestContatto {
 		confr=null;
 		assertFalse(prova.equals(confr));
 
-		confr= new Contatto("Luca","MarioRossi@gmail.com","123456,654321,567890");;
+		confr= new Contatto("Luca","LucaBianchi@gmail.com","123456,654321,567890");;
 		assertFalse(prova.equals(confr));
 	}
 
@@ -43,6 +43,12 @@ public class TestContatto {
 		assertEquals("[123456, 654321, 678901]",prova.numTel());
 		prova.eliminaNumTel("567896");
 		assertEquals("[123456, 654321, 678901]",prova.numTel());
+	}
+	
+	@Test
+	public void testEmail() {
+		prova.setEmail("LucaBianchi@libero.it");
+		assertTrue(prova.getEmail().equals("LucaBianchi@libero.it"));
 	}
 	
 	@After
