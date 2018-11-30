@@ -62,6 +62,14 @@ public class TestGiudice {
 	}
 	
 	@Test
+	public void testTarget() {
+		assertTrue(Giudice.valida(Giudice.genTarget()));
+		System.out.println(Giudice.genTarget());
+		assertTrue(Giudice.valida(Giudice.genTarget()));
+		System.out.println(Giudice.genTarget());
+	}
+	
+	@Test
 	public void testMaggots(){
 		// System.out.println(Giudice.numMaggots("1234", "1234"));
 		assertTrue(Giudice.numMaggots("1234", "1234")==0);

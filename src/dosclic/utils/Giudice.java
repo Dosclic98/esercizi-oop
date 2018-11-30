@@ -2,6 +2,7 @@ package dosclic.utils;
 
 import java.util.ArrayList;
 
+
 public class Giudice {
 	public final static int LUNGHEZZA = 4;
 	public static final ArrayList<Character> CHARS = new ArrayList<Character>();
@@ -64,6 +65,20 @@ public class Giudice {
 			}
 		}
 		return numMaggots;
+	}
+	
+	public static String genTarget() {
+		ArrayList<Character> cpy = new ArrayList<Character>(CHARS.size());
+		for(int i=0;i<CHARS.size();i++) cpy.add(CHARS.get(i));
+		
+		StringBuilder target = new StringBuilder(LUNGHEZZA);
+		int ran = 0;
+		for(int j=0;j<LUNGHEZZA;j++) {
+			ran = ((int)(Math.random() * (cpy.size()))) ; 
+			target.append(cpy.get(ran));
+			cpy.remove(ran);
+		}
+		return target.toString();
 	}
 
 }
