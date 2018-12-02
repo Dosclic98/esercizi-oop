@@ -68,8 +68,7 @@ public class Giudice {
 	}
 	
 	public static String genTarget() {
-		ArrayList<Character> cpy = new ArrayList<Character>(CHARS.size());
-		for(int i=0;i<CHARS.size();i++) cpy.add(CHARS.get(i));
+		ArrayList<Character> cpy = new ArrayList<Character>(CHARS);
 		
 		StringBuilder target = new StringBuilder(LUNGHEZZA);
 		int ran = 0;
