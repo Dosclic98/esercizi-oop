@@ -27,7 +27,10 @@ public class Giudice {
 	
 	private static boolean validChars(String string) {
 		for(int i=0;i<string.length();i++) {
-			if(!CHARS.contains(string.charAt(i))) return false;
+			if(!CHARS.contains(string.charAt(i))) {
+				System.out.println("Carateri invalidi");
+				return false;
+			}
 		}
 		return true;
 	}
@@ -36,6 +39,7 @@ public class Giudice {
 		for(int i=0;i<string.length();i++) {
 			for(int j=0;j<string.length();j++) {
 				if(j!=i && string.charAt(i) == string.charAt(j)) {
+					System.out.println("Ripetizione");
 					return false;
 				}
 			}
