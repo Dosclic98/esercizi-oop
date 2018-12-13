@@ -13,22 +13,22 @@ public class Rubrica {
 		rubrica = new ArrayList<Contatto>();
 	}
 	
-	public int aggiungi(Contatto c) {
-		if(rubrica.contains(c)) return 0;
-		if(rubrica.size() == MAX_DIM) return -1;
+	public int aggiungi(Contatto c) throws EccezioneRubrica{
+		if(rubrica.contains(c)) throw new EccezioneRubrica("Elemento presente");
+		if(rubrica.size() == MAX_DIM) throw new EccezioneRubrica("Massima dimensione raggiunta");
 		rubrica.add(c);
 		return 1;
 	}
 
-	public int aggiungi(String nome, String email, String tel) {
+	public int aggiungi(String nome, String email, String tel) throws EccezioneRubrica{
 		return aggiungi(new Contatto(nome,email,tel));
 	}	
 	
-	public int aggiungi(String nome, String email) {
+	public int aggiungi(String nome, String email) throws EccezioneRubrica{
 		return aggiungi(new Contatto(nome,email));
 	}
 	
-	public int aggiungi(String nome) {
+	public int aggiungi(String nome) throws EccezioneRubrica {
 		return aggiungi(new Contatto(nome));
 	}
 	

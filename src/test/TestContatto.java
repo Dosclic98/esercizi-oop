@@ -24,14 +24,14 @@ public class TestContatto {
 	
 	@Test
 	public void testEquals() {
-		// Controlla se il contatto c'è
+		// Controlla se il contatto c'ï¿½
 		Contatto confr = new Contatto("Mario","MarioRossi@gmail.com","123456,654321,567890");
 		assertTrue(prova.equals(confr));
 		// Controlla se non da errori dato un contatto nullo
 		confr=null;
 		assertFalse(prova.equals(confr));
 
-		confr= new Contatto("Luca","LucaBianchi@gmail.com","123456,654321,567890");;
+		confr= new Contatto("Luca","LucaBianchi@gmail.com","123456,654321,567890");
 		assertFalse(prova.equals(confr));
 	}
 
