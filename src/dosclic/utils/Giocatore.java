@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public abstract class Giocatore {
 	private String target;
-	private ArrayList<Tentativo> tentativi;
+	protected ArrayList<Tentativo> tentativi;
 	
 	public Giocatore() {
 		inizializza();
