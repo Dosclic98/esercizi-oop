@@ -45,8 +45,8 @@ public class SmartComputer extends Computer {
 			}
 		}
 		guessPossibli = temp;
-		// Da qui
-		return guessPossibli.get(random()*guessPossibli.size());
+		
+		return guessPossibli.get((int) (Math.random() * guessPossibli.size()) );
 	}
 	
 	public boolean inAccordoTutti(String s, ArrayList<Tentativo> ts) {

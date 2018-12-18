@@ -23,6 +23,11 @@ public class TestSmartComputer {
 		assertEquals(5040,smcomp.getLenPoss());
 	}
 	
+	@Test
+	public void testGen() {
+		assertTrue(Giudice.valida(smcomp.genGuess()));
+	}
+	
 	@After
 	public void reset() {
 		Giudice.reset();

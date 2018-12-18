@@ -39,7 +39,7 @@ public class Giudice {
 		for(int i=0;i<string.length();i++) {
 			for(int j=0;j<string.length();j++) {
 				if(j!=i && string.charAt(i) == string.charAt(j)) {
-					System.out.println("Ripetizione");
+					// System.out.println("Ripetizione");
 					return false;
 				}
 			}

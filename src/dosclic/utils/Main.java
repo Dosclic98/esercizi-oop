@@ -5,7 +5,7 @@ public class Main {
 	static {Giudice.init();}
 
 	public static Umano umano;
-	public static Computer computer;
+	public static SmartComputer computer;
 	public static int numBU, numBC, numMU, numMC;
 	public static int guessMax;
 	public static String targetU, targetC, guessU, guessC;
@@ -46,7 +46,7 @@ public class Main {
 		guessMax = Input.readInt("Quale deve essere il numero massimo di guess:");
 		if (umano==null) umano=new Umano();
 		else umano.inizializza();
-		if (computer==null) computer=new Computer();
+		if (computer==null) computer=new SmartComputer();
 		else computer.inizializza();
 		targetC = computer.getTarget();
 		targetU = umano.getTarget();
