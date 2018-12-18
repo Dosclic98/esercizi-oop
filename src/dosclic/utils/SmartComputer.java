@@ -9,7 +9,13 @@ public class SmartComputer extends Computer {
 		super();
 		guessPossibli = combValide(combinazioni(Giudice.LUNGHEZZA,Giudice.CHARS));
 	}
-	
+
+	public void inizializza() {
+		target = genTarget();
+		tentativi = new ArrayList<Tentativo>();
+		guessPossibli = combValide(combinazioni(Giudice.LUNGHEZZA,Giudice.CHARS));
+	}
+
 	public ArrayList<String> combinazioni(int lunghezza, ArrayList<Character> chars){
 		if(lunghezza==0) {
 			ArrayList<String> comb = new ArrayList<String>();
@@ -39,9 +45,9 @@ public class SmartComputer extends Computer {
 	
 	public String genGuess() {
 		ArrayList<String> temp = new ArrayList<String>();
-		for(String i:guessPossibli) {
-			if(inAccordoTutti(i,tentativi)) {
-				temp.add(i);
+		for(int i=0;i<guessPossibli.size();i++) {
+			if(inAccordoTutti(guessPossibli.get(i),tentativi)) {
+				temp.add(guessPossibli.get(i));
 			}
 		}
 		guessPossibli = temp;

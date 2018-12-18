@@ -3,7 +3,7 @@ package dosclic.utils;
 import java.util.ArrayList;
 
 public abstract class Giocatore {
-	private String target;
+	protected String target;
 	protected ArrayList<Tentativo> tentativi;
 	
 	public Giocatore() {
