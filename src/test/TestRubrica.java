@@ -58,7 +58,7 @@ public class TestRubrica {
 		rub.aggiungi("Mario","MarioRossi@gmail.com","123456,654321,567890");
 		rub.aggiungi("Luca","LucaRossi@gmail.com","123456,654321,567890");
 	}
-	
+	// Da chiedere se cambiare il throws
 	@Test
 	public void aggiuntaRif() throws EccezioneRubrica{
 		Contatto n1 = new Contatto("Mario","MarioRossi@gmail.com","123456,654321,567890");

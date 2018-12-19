@@ -8,17 +8,22 @@ public class Contatto {
 	private String email;
 	private ArrayList <String> telefoni;
 	
-	public Contatto(String nome, String email, String tels) {
-		this.nome = nome;
-		this.email = email;
-		this.telefoni = new ArrayList<String>(Arrays.asList(tels.split(",")));
+	public Contatto(String nome, String email, String tels) throws EccezioneContatto {
+		if(!nome.matches("^[a-zA-Z]+$")) throw new EccezioneContatto("Nome Contatto invalido");
+		else this.nome = nome;
+		
+		if(!(email.matches("^[a-zA-Z]+" + "@" + "[a-zA-Z]+" + "\\." + "[a-zA-Z]+") || email.matches(""))) throw new EccezioneContatto("Email Contatto invalido");
+		else this.email = email;
+		
+		if(!(tels.matches("^[0-9]{6}+" + "(,[0-9]{6})*") || tels.matches(""))) throw new EccezioneContatto("Numero Contatto invalido");
+		else this.telefoni = new ArrayList<String>(Arrays.asList(tels.split(",")));
 	}
 	
-	public Contatto(String nome, String email) {
+	public Contatto(String nome, String email) throws EccezioneContatto {
 		this(nome,email,"");
 	}
 	
-	public Contatto(String nome) {
+	public Contatto(String nome) throws EccezioneContatto {
 		this(nome,"","");
 	}
 	

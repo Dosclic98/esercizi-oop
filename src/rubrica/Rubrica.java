@@ -19,7 +19,7 @@ public class Rubrica {
 		rubrica.add(c);
 		return 1;
 	}
-
+	// Da chiedere se cambiare il throws
 	public int aggiungi(String nome, String email, String tel) throws EccezioneRubrica{
 		return aggiungi(new Contatto(nome,email,tel));
 	}	

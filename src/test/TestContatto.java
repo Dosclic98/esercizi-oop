@@ -3,19 +3,23 @@ package test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
 import rubrica.Contatto;
+import rubrica.EccezioneContatto;
 
 public class TestContatto {
 	
 	Contatto prova;
+	ExpectedException exception;
 	
 	@Before
-	public void crea() {
+	public void crea() throws EccezioneContatto {
 		prova = new Contatto("Mario","MarioRossi@gmail.com","123456,654321,567890");
 		assertTrue(prova.nome.equals("Mario"));
 		assertTrue(prova.getEmail().equals("MarioRossi@gmail.com"));
@@ -23,7 +27,34 @@ public class TestContatto {
 	}
 	
 	@Test
-	public void testEquals() {
+	public void testExceptionNome() throws EccezioneContatto {
+		prova = new Contatto("Marco23");
+		exception.expect(EccezioneContatto.class);
+		exception.expectMessage("Nome Contatto invalido");
+		fail();
+	}
+
+	@Test
+	public void testExceptionEmail() throws EccezioneContatto {
+		prova = new Contatto("Marco","MarcoRossi@123.com");
+		exception.expect(EccezioneContatto.class);
+		exception.expectMessage("Email Contatto invalido");
+		fail();
+		
+	}
+
+	@Test
+	public void testExceptionTelefono() throws EccezioneContatto {
+		prova = new Contatto("Marco","MarcoRossi@gmail.com","123456,ciao");
+		exception.expect(EccezioneContatto.class);
+		exception.expectMessage("Numero Contatto invalido");
+		fail();
+		
+	}
+
+	
+	@Test
+	public void testEquals() throws EccezioneContatto {
 		// Controlla se il contatto c'�
 		Contatto confr = new Contatto("Mario","MarioRossi@gmail.com","123456,654321,567890");
 		assertTrue(prova.equals(confr));
