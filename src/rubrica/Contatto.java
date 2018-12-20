@@ -9,7 +9,7 @@ public class Contatto {
 	private ArrayList <String> telefoni;
 	
 	public Contatto(String nome, String email, String tels) throws EccezioneContatto {
-		if(!nome.matches("^[a-zA-Z]+$")) throw new EccezioneContatto("Nome Contatto invalido");
+		if(!nome.matches("^([ a-zA-Z]+)")) throw new EccezioneContatto("Nome Contatto invalido");
 		else this.nome = nome;
 		
 		if(!(email.matches("^[a-zA-Z]+" + "@" + "[a-zA-Z]+" + "\\." + "[a-zA-Z]+") || email.matches(""))) throw new EccezioneContatto("Email Contatto invalido");

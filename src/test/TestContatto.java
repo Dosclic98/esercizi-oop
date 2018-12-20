@@ -7,6 +7,7 @@ import static org.junit.Assert.fail;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
@@ -16,7 +17,8 @@ import rubrica.EccezioneContatto;
 public class TestContatto {
 	
 	Contatto prova;
-	ExpectedException exception;
+	@Rule
+	public ExpectedException exception = ExpectedException.none();
 	
 	@Before
 	public void crea() throws EccezioneContatto {
@@ -28,26 +30,26 @@ public class TestContatto {
 	
 	@Test
 	public void testExceptionNome() throws EccezioneContatto {
-		prova = new Contatto("Marco23");
 		exception.expect(EccezioneContatto.class);
 		exception.expectMessage("Nome Contatto invalido");
+		prova = new Contatto("Marco23");
 		fail();
 	}
 
 	@Test
 	public void testExceptionEmail() throws EccezioneContatto {
-		prova = new Contatto("Marco","MarcoRossi@123.com");
 		exception.expect(EccezioneContatto.class);
 		exception.expectMessage("Email Contatto invalido");
+		prova = new Contatto("Marco","MarcoRossi@123.com");
 		fail();
 		
 	}
 
 	@Test
 	public void testExceptionTelefono() throws EccezioneContatto {
-		prova = new Contatto("Marco","MarcoRossi@gmail.com","123456,ciao");
 		exception.expect(EccezioneContatto.class);
 		exception.expectMessage("Numero Contatto invalido");
+		prova = new Contatto("Marco","MarcoRossi@gmail.com","123456,ciao");
 		fail();
 		
 	}

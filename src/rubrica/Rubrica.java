@@ -14,21 +14,21 @@ public class Rubrica {
 	}
 	
 	public int aggiungi(Contatto c) throws EccezioneRubrica{
-		if(rubrica.contains(c)) throw new EccezioneRubrica("Elemento presente");
-		if(rubrica.size() == MAX_DIM) throw new EccezioneRubrica("Massima dimensione raggiunta");
+		if(rubrica.contains(c)) throw new EccezioneRubricaExists();
+		if(rubrica.size() == MAX_DIM) throw new EccezioneRubricaFull();
 		rubrica.add(c);
 		return 1;
 	}
 	// Da chiedere se cambiare il throws
-	public int aggiungi(String nome, String email, String tel) throws EccezioneRubrica{
+	public int aggiungi(String nome, String email, String tel) throws EccezioneRubrica, EccezioneContatto{
 		return aggiungi(new Contatto(nome,email,tel));
 	}	
 	
-	public int aggiungi(String nome, String email) throws EccezioneRubrica{
+	public int aggiungi(String nome, String email) throws EccezioneRubrica, EccezioneContatto{
 		return aggiungi(new Contatto(nome,email));
 	}
 	
-	public int aggiungi(String nome) throws EccezioneRubrica {
+	public int aggiungi(String nome) throws EccezioneRubrica, EccezioneContatto{
 		return aggiungi(new Contatto(nome));
 	}
 	
