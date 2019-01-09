@@ -1,5 +1,8 @@
 package rubrica;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 public class Rubrica {
@@ -83,4 +86,25 @@ public class Rubrica {
 		s = s + "]";
 		return s;
 	}
+	
+	public String toStringFile() {
+		StringBuilder s = new StringBuilder();
+		for(int i=0; i<rubrica.size(); i++) {
+			s.append(rubrica.get(i).toStringFile() + "\n");
+		}
+		
+		return s.toString();		
+	}
+	
+	public void writeOnFile(){
+		try {
+			PrintWriter out = new PrintWriter(new File(nome + ".txt"));			out.print(toStringFile());
+			
+			out.close();
+		}
+		catch(IOException e){
+			e.printStackTrace();
+		}
+	}
+	
 }

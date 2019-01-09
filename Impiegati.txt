@@ -1,0 +1,2 @@
+Mario,MarioRossi@gmail.com,123456;654321;567890
+Luca,LucaRossi@gmail.com,123456;654321;567890

@@ -105,6 +105,12 @@ public class TestRubrica {
 		assertEquals(0,rubrica1.numEl());		
 	}
 	
+	@Test
+	public void printer() throws EccezioneRubrica, EccezioneContatto{
+		add1(rubrica1);
+		rubrica1.writeOnFile();
+	}
+	
 	@After
 	public void reset() {
 		rubrica1 = null;

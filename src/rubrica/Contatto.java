@@ -51,6 +51,18 @@ public class Contatto {
 		return (nome + "," + email + "," + telefoni.toString());
 	}
 	
+	public String toStringFile() {
+		StringBuilder str = new StringBuilder();
+		str.append(nome + ",");
+		str.append(email + ",");
+		for(int i=0;i<telefoni.size()-1;i++) {
+			str.append(telefoni.get(i) + ";");
+		}
+		str.append(telefoni.get(telefoni.size()-1));
+		
+		return str.toString();
+	}
+	
 	public boolean equals(Object contatto) {
 		
 		if(this==contatto) return true;
