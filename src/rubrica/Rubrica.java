@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.function.Predicate;
 
 public class Rubrica {
 	private ArrayList<Contatto> rubrica;
@@ -34,6 +35,18 @@ public class Rubrica {
 	public int aggiungi(String nome) throws EccezioneRubrica, EccezioneContatto{
 		return aggiungi(new Contatto(nome));
 	}
+
+	public ArrayList<Contatto> cerca(Predicate<Contatto> c){
+		ArrayList<Contatto> container = new ArrayList<Contatto>();
+		for(Contatto i : rubrica) {
+			if(c.test(i)) container.add(i);
+		}
+		return container;
+	}
+
+	public ArrayList<Contatto> cercaPerNome1(String s){
+		return cerca(c-> c.nome.startsWith(s));
+	}	
 	
 	public ArrayList<Contatto> cercaPerNome(String s){
 		ArrayList<Contatto> container = new ArrayList<Contatto>();
@@ -42,13 +55,18 @@ public class Rubrica {
 		}
 		return container;
 	}
-	
+
 	public ArrayList<Contatto> cercaPerEmail(String s){
 		ArrayList<Contatto> container = new ArrayList<Contatto>();
 		for(int i=0; i<rubrica.size(); i++) {
 			if(rubrica.get(i).getEmail().startsWith(s)) container.add(rubrica.get(i));
 		}
 		return container;
+		
+	}	
+	
+	public ArrayList<Contatto> cercaPerEmail1(String s){
+		return cerca(c-> c.getEmail().startsWith(s));
 		
 	}
 	
