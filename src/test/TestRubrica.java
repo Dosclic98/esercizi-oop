@@ -76,6 +76,13 @@ public class TestRubrica {
 		assertTrue(rubrica1.toString().equals("[Mario,Mario86@gmail.com,[123456, 654321, 567890, 348291]]"));
 
 	}
+
+	@Test
+	public void cerca() throws EccezioneRubrica, EccezioneContatto{
+		assertEquals(1,rubrica1.aggiungi("Mario","MarioRossi@gmail.com","123456,654321,567890"));
+		assertEquals(1,rubrica1.cerca("Mar",(String s, Contatto p)-> p.nome.startWith(s)).size());
+		assertEquals(0,rubrica1.cercaPerNome("Luc").size());
+	}
 	
 	@Test
 	public void cercaNome() throws EccezioneRubrica, EccezioneContatto{
